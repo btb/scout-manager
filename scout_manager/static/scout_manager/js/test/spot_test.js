@@ -2,11 +2,29 @@ var assert = require('assert');
 var Spot = require('../spot').Spot;
 var jsdom = require('jsdom');
 var jquery = require('jquery');
+var Cookies = require('js-cookie');
+var ajax = require('ajax');
 
 var jqueryFromHtml = function jqueryFromHtml(html) {
     var doc = jsdom.jsdom(html);
     var win = doc.parentWindow;
     var $ = jquery(win);
+    // Function to serialize form data into an JS object
+    $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    }; 
     return $;
 }
 
