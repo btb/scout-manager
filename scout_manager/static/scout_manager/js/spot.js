@@ -94,3 +94,9 @@ var Spot = {
         $("input[value='Save Changes']").click(Spot.submit_spot);
     }
 };
+
+/* node.js exports */
+if (typeof exports == "undefined") {
+    var exports = {};
+}
+exports.Spot = Spot;
