@@ -67,7 +67,7 @@ var Forms = {
 
         // remove image from list to be uploaded
         $('#mgr_list_spot_images').on('click', '.mgr-delete-image', function() {
-            $(this).parent("li").remove();
+            $(this).parent().parent(".well").remove();
             Forms.image_check_count();
         });
     },

@@ -10,10 +10,12 @@
 <div id="mgr_list_spot_images" class="row">
     {% for image in spot.images %}
      <div class="col-md-4">
-         <div class="well" style="height:200px;">
-         <img src="/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=100">
-         <label for="study-default-image-1" class="scope"><input type="radio" name="default-study-img" id="study-default-image-1" />default</label>
-         <input type="button" value="Delete image" class="mgr-delete-image" />
+         <div class="well" style="min-height:200px;">
+             <div style="height:200px; background: url('/images/{{ spot.spot_id }}/image/{{ image.image_id }}?width=500') no-repeat center center; background-size:cover;">&nbsp;</div>
+             <div class="mgr-dataset-actions">
+                 <button class="btn btn-default btn-sm" title="make default" type="button" value="make default"><i class="fa fa-asterisk"></i> <span>make default</span></button>
+                 <button class="btn btn-danger btn-sm mgr-delete-image" title="delete image" type="button" value="delete image"><i class="fa fa-trash"></i> <span>delete image</span></button>
+             </div>
         </div>
     </div>
     {% endfor %}
