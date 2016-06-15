@@ -10,12 +10,41 @@ var jqueryFromHtml = function jqueryFromHtml(html) {
     return $;
 }
 
-describe("test test", function() {
-    describe("test", function() {
-        it('should test', function() {
-            global.$ = jqueryFromHtml('<form> <p> </p> </form>');
-            assert.equal(true, true);
-            Spot.submit_spot();
+describe("Spot Tests", function() {
+    describe("Submit Spot", function() {
+        describe("Create Spot", function() {       
+            it('should alert that there was a success', function() {
+                global.$ = jqueryFromHtml('<form> <div class="alert hidden" id="pub_error"> </div> </form>');
+                Spot.submit_spot();
+                var error = $("#pub_error");
+                var classes = error.attr("class");
+                assert.equal(classes, 'alert alert-success');
+            });
+            it('should alert that there was a failure', function() {
+                global.$ = jqueryFromHtml('<form> <div class="alert hidden" id="pub_error"> </div> </form>');
+                Spot.submit_spot();
+                assert.equal();
+                var error = $("#pub_error");
+                var classes = error.attr("class");
+                assert.equal(classes, 'alert alert-danger');
+            });
         });
+        describe("Edit Spot", function() {       
+            it('should alert that there was a success', function() {
+                global.$ = jqueryFromHtml('<form> <div class="alert hidden" id="pub_error"> </div> </form>');
+                Spot.submit_spot();
+                var error = $("#pub_error");
+                var classes = error.attr("class");
+                assert.equal(classes, 'alert alert-success');
+            });
+            it('should alert that there was a failure', function() {
+                global.$ = jqueryFromHtml('<form> <div class="alert hidden" id="pub_error"> </div> </form>');
+                Spot.submit_spot();
+                var error = $("#pub_error");
+                var classes = error.attr("class");
+                assert.equal(classes, 'alert alert-danger');
+            });
+        });
+
     });
 });
