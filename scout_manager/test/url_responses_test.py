@@ -19,13 +19,18 @@ _testCases = (
     ('Items add', '/items/add/', OK, 'SCOUT-122'),
     ('Items add redir', '/items/add', redir, 'SCOUT-129'),
     ('Item specific', '/items/5555/', OK, 'SCOUT-122'),
+    ('Items STF', '/items/?app_type=stf', OK),
+    ('Items ACA', '/items/?app_type=aca', OK),
+    ('Malformed Item URL', '/items/lebron', notfound),
     ('Spaces', '/spaces/', OK, 'SCOUT-122'),
     ('Spaces redir', '/spaces', redir, 'SCOUT-122'),
     ('Spaces add', '/spaces/add/', OK, 'SCOUT-122'),
     ('Spaces add redir', '/spaces/add', redir, 'SCOUT-129'),
     ('Spaces specific', '/spaces/2/', OK, 'SCOUT-122'),
     ('Spaces specific redir', '/spaces/5070', redir, 'SCOUT-129'),
-    ('Bad url', '/rando/', notfound)
+    ('Bad url', '/rando/', notfound),
+    ('Food' , '/spaces/?app_type=food', OK),
+    ('Malformed Spaces URL', '/spaces/stephcurry', notfound),
 )
 
 
