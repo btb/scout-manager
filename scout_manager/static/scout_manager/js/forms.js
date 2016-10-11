@@ -25,12 +25,8 @@ var Forms = {
         }
 
         // handle submitting spot to server
-        $("#submit_spot").click(function() {
-            if ($(this).attr("value") == "Create Item")
-                Item.submit_item();
-            else
-                Spot.submit_spot();
-        });
+        $("#submit_spot").click(Spot.submit_spot);
+        $("#submit_item").click(Item.submit_item);
 
     },
 
@@ -341,6 +337,7 @@ var Forms = {
             $(".scout-published-actions .help-block").html("Note: Validation errors prevent this spot from being un-published.");
 
             $(".scout-published #submit_spot").attr('disabled', 'disabled');
+            $(".scout-published #submit_item").attr('disabled', 'disabled');
             $(".scout-published span").addClass("text-danger");
             $(".scout-published span").html("Note: Validation errors prevent any changes from being published.")
         }
@@ -360,6 +357,7 @@ var Forms = {
             $(".scout-published-actions .help-block").html("Note: Unpublishing this space will remove it from being seen in client apps.");
 
             $(".scout-published #submit_spot").removeAttr("disabled");
+            $(".scout-published #submit_item").removeAttr("disabled");
             $(".scout-published span").removeClass("text-danger");
             $(".scout-published span").html("Note: This space is published and any changes will be shown immediately in client apps.")
         }
@@ -376,11 +374,13 @@ var Forms = {
         if (num_errors > 0) {
             console.log("spot cannot be created")
             $(".scout-create #submit_spot").attr('disabled', 'disabled');
+            $(".scout-create #submit_item").attr('disabled', 'disabled');
             $(".scout-create span").show();
         }
         else {
             console.log("spot can be created")
             $(".scout-create #submit_spot").removeAttr("disabled");
+            $(".scout-create #submit_item").removeAttr("disabled");
             $(".scout-create span").hide();
         }
 
