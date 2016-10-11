@@ -86,6 +86,9 @@ def update_item(form_data, item_id, image=None):
             json_data['items'][i] = item_json
     spot_client.put_spot(spot_id, json.dumps(json_data), etag)
 
+    if form_data['file'] is not None and form_data['file'] != "undefined":
+        spot_client.post_item_image(item_id, form_data['file'])
+
 
 def _build_item_json(form_data):
     json_data = json.loads(form_data['json'])
