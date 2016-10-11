@@ -95,9 +95,9 @@ class Item(RESTDispatch):
                             content_type='application/json')
 
     def DELETE(self, request, item_id):
-        etag = request.body
+        spot_id = request.body
         try:
-            delete_item(item_id, etag)
+            delete_item(item_id, spot_id)
         except Exception as ex:
             return HttpResponse(json.dumps({'error': str(ex)}), status=400,
                                 content_type='application/json')
