@@ -1,6 +1,6 @@
 from scout_manager.views.rest_dispatch import RESTDispatch
 from scout_manager.dao.space import update_spot, create_spot, delete_spot
-from scout_manager.dao.item import delete_item
+from scout_manager.dao.item import create_item, delete_item
 from django.http import HttpResponse
 import json
 import re
@@ -114,7 +114,7 @@ class ItemCreate(RESTDispatch):
     def PUT(self, request):
         form_data = process_form_data(request)
         # try:
-        # create_item(form_data)
+        create_item(form_data)
         # except Exception as ex:
         #     return HttpResponse(json.dumps({'error': str(ex)}), status=400,
         #                         content_type='application/json')

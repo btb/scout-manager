@@ -43,8 +43,6 @@
             <div class="help-block with-errors"></div>
 
             <input type="hidden" name="id" value="{{ spot.item.item_id }}" />
-            <input type="hidden" name="spot_id" value="{{ spot.spot_id }}" />
-            <input type="hidden" name="etag" value="{{ spot.etag }}" />
         </div>
 
         <fieldset>
@@ -60,6 +58,7 @@
         <div class="form-group">
             <label for="">Category: {{ spot.item.category }}</label>
             <div class="well" id="item_categories">
+                <div class="radio"><label><input type="radio" name="category" value="Technology Loan">Technology Loan</label></div>
                 <div class="radio"><label><input type="radio" name="category" value="">Cameras</label></div>
                 <div class="radio"><label><input type="radio" name="category" value="">Camera Accessories</label></div>
                 <div class="radio"><label><input type="radio" name="category" value="">Computers</label></div>
@@ -373,10 +372,10 @@
     <div class="col-md-8">
         <div class="form-group">
             <label for="" class="control-label">Space:</label> {{spot.name}}
-            <select id="spot_select" class="form-control" required  data-error="Please select a space for this item.">
+            <select id="spot_select" class="form-control" name="spot_id" required  data-error="Please select a space for this item.">
                 <option disabled selected value>select a space...</option>
                 {% for s in spots %}
-                <option value="{{s.name}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
+                <option value="{{s.spot_id}}" data-campus="{{s.campus}}" data-building="{{s.building_name}}" {% if s.name == spot.name %}selected{% endif %}>{{s.name}}</option>
                 {% endfor %}
             </select>
             <div class="help-block with-errors"></div>
