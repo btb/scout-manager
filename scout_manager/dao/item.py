@@ -3,6 +3,7 @@ from spotseeker_restclient.spotseeker import Spotseeker
 from spotseeker_restclient.exceptions import DataFailureException
 from scout_manager.dao.space import process_extended_info
 import json
+import copy
 
 
 def delete_item(item_id, spot_id):
@@ -66,11 +67,32 @@ def _get_spot_json(spot_id):
     return json.loads(content)
 
 
+def update_item(form_data, item_id, image=None):
+    item_json = _build_item_json(form_data)
+    spot_id = item_json.pop('spot_id')
+    new_spot_id = item_json.pop('new_spot_id')
+
+    # Can we make item move work while preserving item id?
+    # if not new_spot_id == spot_id:
+    #     delete_item(item_id, spot_id)
+    #     create_item(form_data)
+    #     return
+
+    spot_client = Spotseeker()
+    json_data = _get_spot_json(spot_id)
+    etag = json_data["etag"]
+    for i, item in enumerate(json_data['items']):
+        if item['id'] == int(item_id):
+            json_data['items'][i] = item_json
+    spot_client.put_spot(spot_id, json.dumps(json_data), etag)
+
+
 def _build_item_json(form_data):
     json_data = json.loads(form_data['json'])
 
     # json_data['item_category'] = json_data.pop('category')
     # json_data['item_subcategory'] = json_data.pop('subcategory')
+    json_data['id'] = int(json_data['id'])
 
     extended_info = {}
 
